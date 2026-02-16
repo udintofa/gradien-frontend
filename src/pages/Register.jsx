@@ -1,95 +1,153 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { register } from "../apis/auth.js";
 
+export default function Register() {
+  const navigate = useNavigate();
 
-const Register = () => {
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [full_name, setFullName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [school_name, setSchool] = useState("");
+  const [grade, setGrade] = useState("");
+  const [major, setMajor] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setError('Password dan konfirmasi password tidak sama');
+      setError("Password dan konfirmasi password tidak sama");
       return;
     }
 
-    setError('');
+    try {
+      await register({
+        full_name,
+        nickname,
+        school_name,
+        grade,
+        major,
+        username,
+        password,
+      });
 
-    // nanti ganti ke API backend
-    console.log({
-      fullName,
-      username,
-      password,
-    });
+      navigate("/login");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-600 px-6 py-12">
 
-        {error && <p style={{color: "red"}}>{error}</p>}
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-3xl bg-white/90 backdrop-blur rounded-2xl shadow-2xl p-8"
+      >
 
-        <div>
-          <label>Nama Lengkap</label>
-          <input
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            placeholder="Nama lengkap"
-            required
-          />
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl font-bold text-center mb-6 text-gray-800"
+        >
+          Daftar Akun
+        </motion.h2>
 
-        <div>
-          <label>Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="username"
-            required
-          />
-        </div>
+        {error && (
+          <p className="text-red-500 text-sm mb-4 text-center">
+            {error}
+          </p>
+        )}
 
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-          />
-        </div>
+        <motion.form
+          onSubmit={handleSubmit}
+          className="grid md:grid-cols-2 gap-4"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: {
+              transition: {
+                staggerChildren: 0.08
+              }
+            }
+          }}
+        >
 
-        <div>
-          <label>Konfirmasi Password</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="••••••••"
-            required
-          />
-        </div>
+          {[
+            { label: "Nama Lengkap", value: full_name, set: setFullName },
+            { label: "Nama Panggilan", value: nickname, set: setNickname },
+            { label: "Asal Sekolah", value: school_name, set: setSchool },
+            { label: "Kelas", value: grade, set: setGrade },
+            { label: "Jurusan", value: major, set: setMajor },
+            { label: "Username", value: username, set: setUsername },
+            { label: "Password", value: password, set: setPassword, type: "password" },
+            { label: "Konfirmasi Password", value: confirmPassword, set: setConfirmPassword, type: "password" },
+          ].map((field, i) => (
+            <motion.div
+              key={i}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+              }}
+            >
+              <label className="text-sm font-medium text-gray-600">
+                {field.label}
+              </label>
+              <input
+                type={field.type || "text"}
+                value={field.value}
+                onChange={(e) => field.set(e.target.value)}
+                className="w-full mt-1 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-indigo-500 outline-none"
+                required
+              />
+            </motion.div>
+          ))}
 
-        <button type="submit">
-          Daftar
-        </button>
-        <p>
-            Sudah punya akun?{' '}
-            <Link to="/login">
-                Login
+          <motion.div
+            className="md:col-span-2 mt-4"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              show: { opacity: 1, y: 0 }
+            }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              type="submit"
+              className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+            >
+              Daftar
+            </motion.button>
+          </motion.div>
+
+          <motion.div
+            className="md:col-span-2 text-center text-sm text-gray-600"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1 }
+            }}
+          >
+            Sudah punya akun?{" "}
+            <Link
+              to="/login"
+              className="text-indigo-600 font-medium hover:underline"
+            >
+              Login
             </Link>
-            </p>
-      </form>
-    </div>
-  );
-};
+          </motion.div>
 
-export default Register;
+        </motion.form>
+
+      </motion.div>
+    </section>
+  );
+
+}

@@ -1,90 +1,110 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { login } from "../apis/auth.js";
 
+export default function Login() {
+  const navigate = useNavigate();
 
-import API_BASE_URL from '../config';
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-export default function Login () {
-    const navigate = useNavigate();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    try {
+      await login(username, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-500 p-6">
+      
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md"
+      >
+        <div className="bg-white/90 backdrop-blur-xl shadow-2xl rounded-2xl p-8">
+          
+          <h2 className="text-3xl font-bold text-center mb-2">
+            Welcome Back 👋
+          </h2>
 
-        try {
-            const res = await fetch(`${API_BASE_URL}/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username,
-                password,
-            }),
-            });
+          <p className="text-center text-gray-500 mb-6">
+            Silakan login untuk melanjutkan
+          </p>
 
-            const data = await res.json();
+          {error && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="bg-red-100 text-red-600 text-sm p-3 rounded-lg mb-4"
+            >
+              {error}
+            </motion.div>
+          )}
 
-            if (!res.ok) {
-            throw new Error(data.message || 'Login gagal');
-            }
+          <form onSubmit={handleSubmit} className="space-y-4">
+            
+            {/* Username */}
+            <div>
+              <label className="text-sm font-medium text-gray-600">
+                Username
+              </label>
+              <input
+                type="text"
+                placeholder="Masukkan username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                className="w-full mt-1 px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              />
+            </div>
 
-            // === AMBIL TOKEN ===
-            const { token } = data;
+            {/* Password */}
+            <div>
+              <label className="text-sm font-medium text-gray-600">
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full mt-1 px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              />
+            </div>
 
-            // === SIMPAN TOKEN ===
-            localStorage.setItem('token', token);
+            {/* Button */}
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              type="submit"
+              className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold shadow-lg hover:bg-indigo-700 transition"
+            >
+              Masuk
+            </motion.button>
+          </form>
 
-            // redirect setelah login
-            navigate('/dashboard');
-        } catch (err) {
-            setError(err.message);
-        }
-    };
-    console.log(API_BASE_URL)
-
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                {error && <p style={{color: "red"}}>{error}</p>}
-                <div>
-                <label>Username</label>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="username"
-                    required
-                />
-                </div>
-
-                <div>
-                <label>Password</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    required
-                />
-                </div>
-
-                <button type="submit">
-                    Masuk
-                </button>
-
-                <p>
-                  Belum punya akun?{' '}
-                  <Link to="/register">
-                    Register
-                  </Link>
-                </p>
-            </form>
+          {/* Register */}
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Belum punya akun?{" "}
+            <Link
+              to="/register"
+              className="text-indigo-600 font-semibold hover:underline"
+            >
+              Register
+            </Link>
+          </p>
         </div>
-    )
-    };
+      </motion.div>
+    </div>
+  );
+}
