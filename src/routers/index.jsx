@@ -6,6 +6,7 @@ import AuthLayout from "../layouts/AuthLayout.jsx"
 
 
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import CourseDetail from "../pages/courses/_id.jsx";
 
 
 // Homepage
@@ -48,5 +49,9 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
 
+    },
+    {
+        path: "/course/:id",
+        element: <ProtectedRoute><CourseDetail /></ProtectedRoute>,
     }
 ]);

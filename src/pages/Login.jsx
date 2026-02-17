@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { login } from "../apis/auth.js";
+import { login ,getMe} from "../apis/auth.js";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -9,6 +9,20 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  // Kalau sudah login langsung ke dashboard
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        await getMe();
+        navigate("/dashboard");
+      } catch {
+        // token invalid → tetap di login
+      }
+    };
+
+    checkLogin();
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

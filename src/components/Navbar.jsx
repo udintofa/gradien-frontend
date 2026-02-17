@@ -55,7 +55,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4 }}
             className="md:hidden bg-white/90 backdrop-blur border-t border-gray-200"
           >
             <ul className="flex flex-col px-6 py-6 gap-4">
