@@ -1,9 +1,13 @@
 import { authFetch } from "./client";
 
-export const getTryOutsByCourseId = ({ params }) => {
-  return authFetch(`/tryouts/course/${params.id}`);
+export const getTryOutsByCourseId = async (id) => {
+  const res = await authFetch(`/tryouts/course/${id}`);
+  const data = await res.json();
+  return data;
 };
 
-export const getTryOutById = ({ params }) => {
-  return authFetch(`/tryouts/${params.id}`);
+export const getTryOutsById =  async (id) => {
+  const res = await authFetch(`/tryouts/${id}`);
+  const data = await res.json();
+  return data;
 };

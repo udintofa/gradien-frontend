@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
+import { getMaterialsByCourseId } from "../../apis/materials";
+import { getTryOutsByCourseId } from "../../apis/tryouts"
+
 import DashboardNavbar from "../../components/DashboardNarbar";
 
 export default function CourseDetail() {
@@ -12,33 +15,8 @@ export default function CourseDetail() {
 
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // ===== Dummy Data =====
-  const materials = [
-    {
-      id: 1,
-      title: "Penalaran Umum",
-    },
-    {
-      id: 2,
-      title: "Pemahaman Bacaan",
-    },
-  ];
-
-  const tryouts = [
-    {
-      id: 1,
-      title: "Tryout UTBK #1",
-      description: "Simulasi UTBK penalaran dan literasi",
-      duration_minutes: 120,
-    },
-    {
-      id: 2,
-      title: "Tryout UTBK #2",
-      description: "Latihan intensif",
-      duration_minutes: 90,
-    },
-  ];
+  const [materials, setMaterials] = useState([]);
+  const [tryouts, setTryouts] = useState([]);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -48,13 +26,34 @@ export default function CourseDetail() {
       } catch (err) {
         console.log("gagal ambil course");
         navigate("/dashboard");
+      }
+    };
+
+    const fetchMaterials = async () => {
+      try {
+        const materialsData = await getMaterialsByCourseId(id);
+        setMaterials(materialsData);
+      } catch (err) {
+        console.log("gagal ambil materials");
+      }
+    };
+
+    const fetchTryouts = async () => {
+      try {
+        const tryoutsData = await getTryOutsByCourseId(id);
+        setTryouts(tryoutsData);
+      } catch (err) {
+        console.log("gagal ambil tryouts");
       } finally {
         setLoading(false);
       }
     };
 
     fetchCourse();
+    fetchMaterials();
+    fetchTryouts();
   }, [id, navigate]);
+
 
   if (loading) {
     return <p className="text-center mt-10">Loading...</p>;
@@ -113,7 +112,7 @@ export default function CourseDetail() {
                 <motion.div
                   key={materi.id}
                   whileHover={{ y: -6 }}
-                  onClick={() => console.log("klik materi", materi.id)}
+                  onClick={() => navigate(`/material/${materi.id}`)}
                   className="bg-white rounded-2xl p-6 shadow hover:shadow-lg cursor-pointer transition"
                 >
                   <h3 className="font-semibold text-lg mb-2">
@@ -136,7 +135,7 @@ export default function CourseDetail() {
                 <motion.div
                   key={tryout.id}
                   whileHover={{ y: -6 }}
-                  onClick={() => console.log("klik tryout", tryout.id)}
+                  onClick={() => navigate(`/tryout/${tryout.id}`)}
                   className="bg-white rounded-2xl p-6 shadow hover:shadow-lg cursor-pointer transition"
                 >
                   <h3 className="font-semibold text-lg mb-2">

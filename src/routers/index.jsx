@@ -6,8 +6,11 @@ import AuthLayout from "../layouts/AuthLayout.jsx"
 
 
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
-import CourseDetail from "../pages/courses/_id.jsx";
 
+// Courses, Materials, Tryouts
+import CourseDetail from "../pages/courses/_id.jsx";
+import MaterialsId from "../pages/materials/_id.jsx";
+import TryoutId from "../pages/tryouts/_id.jsx";
 
 // Homepage
 import Homepage from "../pages/index.jsx";
@@ -53,5 +56,13 @@ export const router = createBrowserRouter([
     {
         path: "/course/:id",
         element: <ProtectedRoute><CourseDetail /></ProtectedRoute>,
+    },
+    {
+        path: "/material/:id",
+        element: <ProtectedRoute> <MaterialsId/> </ProtectedRoute>
+    },
+    {
+        path: "/tryout/:id",
+        element: <ProtectedRoute> <TryoutId/> </ProtectedRoute>
     }
 ]);
