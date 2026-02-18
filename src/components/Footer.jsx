@@ -19,9 +19,14 @@ export default function Footer() {
               GradienNol
             </h2>
 
-            <p className="text-gray-400">
-              Empowering future developers with modern technology learning.
-              Build skills, build career.
+            <p className="text-gray-400 mb-4">
+              Platform belajar UTBK modern dengan materi terstruktur,
+              tryout prediksi, dan pembahasan lengkap untuk membantu kamu
+              mencapai kampus impian 🎯
+            </p>
+
+            <p className="text-sm text-gray-500">
+              🚀 Belajar lebih efektif, hasil lebih maksimal.
             </p>
           </motion.div>
 
@@ -33,13 +38,13 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-white font-semibold mb-4">Navigasi</h3>
 
             <ul className="space-y-2">
-              <li><a href="#home" className="hover:text-white transition">Home</a></li>
-              <li><a href="#services" className="hover:text-white transition">Services</a></li>
-              <li><a href="#courses" className="hover:text-white transition">Courses</a></li>
-              <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+              <li><a href="#home" className="hover:text-white transition">Beranda</a></li>
+              <li><a href="#features" className="hover:text-white transition">Fitur</a></li>
+              <li><a href="#courses" className="hover:text-white transition">Program Belajar</a></li>
+              <li><a href="#contact" className="hover:text-white transition">Kontak</a></li>
             </ul>
           </motion.div>
 
@@ -51,7 +56,13 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-white font-semibold mb-4">Follow Us</h3>
+            <h3 className="text-white font-semibold mb-4">
+              Ikuti Kami
+            </h3>
+
+            <p className="text-gray-400 text-sm mb-4">
+              Dapatkan tips belajar, info UTBK terbaru, dan update tryout.
+            </p>
 
             <div className="flex gap-4">
 
@@ -79,7 +90,10 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="border-t border-slate-700 pt-6 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} GradienNol. All rights reserved.
+          © {new Date().getFullYear()} GradienNol. All rights reserved.  
+          <span className="block mt-1 text-gray-500">
+            Dibuat dengan ❤️ untuk pejuang UTBK Indonesia
+          </span>
         </div>
 
       </div>

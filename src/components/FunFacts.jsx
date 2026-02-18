@@ -26,10 +26,10 @@ function Counter({ target, duration = 1 }) {
 
 export default function FunFacts() {
   const stats = [
-    { number: 150, label: "Happy Students" },
-    { number: 804, label: "Course Hours" },
-    { number: 50, label: "Employed Students" },
-    { number: 15, label: "Years Experience" },
+    { number: 15, label: "Happy Students" },
+    { number: 80, label: "Course Hours" },
+    { number: 25, label: "Employed Students" },
+    { number: 1.5, label: "Years Experience" },
   ];
 
   return (

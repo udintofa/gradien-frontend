@@ -1,27 +1,39 @@
 import { motion } from "framer-motion";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 export default function Team() {
   const members = [
     {
-      name: "Sophia Rose",
-      role: "UX Teacher",
-      image: "https://picsum.photos/300/300?1",
+      name: "Guntur Pangestu",
+      role: "Senior Math Teacher",
+      image: "guntur.jpeg",
+      facebook: "google.com",
+      instagram: "instagram.com/udintofa",
+      linkedin: "google.com"
     },
     {
-      name: "Cindy Walker",
-      role: "Graphic Teacher",
-      image: "https://picsum.photos/300/300?2",
+      name: "Udin Mustofa",
+      role: "Junior Web Developer",
+      image: "udin.jpg",
+      facebook : "google.com",
+      instagram: "instagram.com/udintofa",
+      linkedin: "google.com"
     },
     {
-      name: "David Hutson",
-      role: "Full Stack Master",
-      image: "https://picsum.photos/300/300?3",
+      name: "Leticia Arnoldi",
+      role: "Master of Designer",
+      image: "leti.png",
+      facebook: "google.com",
+      instagram: "instagram.com/udintofa",
+      linkedin: "google.com"
     },
     {
-      name: "Stella Blair",
+      name: "Siapa lagi Lupa aku",
       role: "Digital Animator",
       image: "https://picsum.photos/300/300?4",
+      facebook: "google.com",
+      instagram: "instagram.com/udintofa",
+      linkedin: "google.com"
     },
   ];
 
@@ -58,16 +70,28 @@ export default function Team() {
 
                 {/* Overlay Social */}
                 <div className="absolute inset-0 bg-indigo-600/80 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition">
-                  <a className="bg-white p-3 rounded-full text-indigo-600 hover:scale-110 transition">
+                  <a
+                    onClick={() => window.open(`https://${member.facebook}`, "_blank")}
+                    className="bg-white p-3 rounded-full text-indigo-600 hover:scale-110 transition cursor-pointer"
+                  >
                     <FaFacebookF />
                   </a>
-                  <a className="bg-white p-3 rounded-full text-indigo-600 hover:scale-110 transition">
-                    <FaTwitter />
+
+                  <a
+                    onClick={() => window.open(`https://${member.instagram}`, "_blank")}
+                    className="bg-white p-3 rounded-full text-indigo-600 hover:scale-110 transition cursor-pointer"
+                  >
+                    <FaInstagram />
                   </a>
-                  <a className="bg-white p-3 rounded-full text-indigo-600 hover:scale-110 transition">
+
+                  <a
+                    onClick={() => window.open(`https://${member.linkedin}`, "_blank")}
+                    className="bg-white p-3 rounded-full text-indigo-600 hover:scale-110 transition cursor-pointer"
+                  >
                     <FaLinkedinIn />
                   </a>
                 </div>
+
               </div>
 
               {/* Info */}

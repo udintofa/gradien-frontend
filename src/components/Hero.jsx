@@ -52,13 +52,13 @@ export default function Hero() {
               Mulai Sekarang
             </motion.button>
 
-            <motion.button
+            {/* <motion.button
               className="border border-white/40 px-8 py-4 rounded-xl font-semibold backdrop-blur hover:bg-white/10 transition"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Pelajari Lebih Lanjut
-            </motion.button>
+            </motion.button> */}
           </motion.div>
         </div>
 
@@ -76,7 +76,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-110"></div>
 
             <img
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+              src="edukasi.png"
               alt="Belajar"
               className="relative w-[350px] md:w-[420px] drop-shadow-2xl"
             />

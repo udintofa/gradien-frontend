@@ -14,31 +14,36 @@ export default function Contact() {
           viewport={{ once: true }}
         >
           <p className="text-purple-600 font-semibold uppercase tracking-wider">
-            Contact Us
+            Hubungi Kami
           </p>
 
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-            Feel free to contact us anytime
+            Siap Mulai Perjalanan Lolos UTBK?
           </h2>
 
           <p className="text-gray-600 mb-8">
-            Thank you for choosing our templates. We provide you best CSS
-            templates at absolutely 100% free of charge.
+            Punya pertanyaan tentang program belajar, tryout, atau materi?
+            Tim kami siap membantu kamu memilih kelas terbaik sesuai target
+            kampus impianmu 🎯
           </p>
 
           {/* SPECIAL OFFER CARD */}
           <div className="relative bg-purple-600 text-white p-6 rounded-2xl shadow-lg overflow-hidden">
-            
+
             <div className="absolute -top-6 -left-6 bg-white text-purple-600 w-20 h-20 rounded-full flex flex-col items-center justify-center font-bold shadow">
-              <span className="text-xs">OFF</span>
+              <span className="text-xs">DISKON</span>
               <span className="text-lg">50%</span>
             </div>
 
-            <p className="text-sm opacity-90">Valid: 24 April 2036</p>
+            <p className="text-sm opacity-90">Promo Terbatas</p>
 
             <h4 className="text-xl font-bold mt-2">
-              Special Offer 50% OFF!
+              Konsultasi & Kelas Premium Diskon 50%!
             </h4>
+
+            <p className="text-sm mt-1 opacity-90">
+              Dapatkan akses materi lengkap, tryout prediksi, dan mentoring.
+            </p>
 
             <button className="mt-4 bg-white text-purple-600 p-3 rounded-full hover:scale-105 transition">
               <ArrowRight size={18} />
@@ -54,33 +59,50 @@ export default function Contact() {
           viewport={{ once: true }}
           className="bg-slate-50 p-8 rounded-2xl shadow-md"
         >
-          <form className="space-y-4">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              const name = e.target.name.value;
+              const email = e.target.email.value;
+              const message = e.target.message.value;
+
+              window.location.href =
+                `mailto:info@bimbel.com?subject=Konsultasi Program UTBK&body=` +
+                `Nama: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0APesan:%0D%0A${message}`;
+            }}
+            className="space-y-4"
+          >
 
             <input
+              name="name"
               type="text"
-              placeholder="Your Name..."
+              placeholder="Nama Lengkap..."
               className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
 
             <input
+              name="email"
               type="email"
-              placeholder="Your Email..."
+              placeholder="Email Aktif..."
               className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               required
             />
 
             <textarea
-              placeholder="Your Message..."
+              name="message"
+              placeholder="Tulis pertanyaan kamu di sini..."
               rows={4}
               className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
             />
 
             <button
               type="submit"
               className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition"
             >
-              Send Message Now
+              Kirim Pesan Sekarang 🚀
             </button>
 
           </form>
