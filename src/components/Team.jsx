@@ -12,7 +12,7 @@ export default function Team() {
       linkedin: "google.com"
     },
     {
-      name: "Udin Mustofa",
+      name: "Udin Kedondong",
       role: "Junior Web Developer",
       image: "udin.jpg",
       facebook : "google.com",

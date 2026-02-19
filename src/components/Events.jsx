@@ -3,30 +3,32 @@ import { ArrowRight } from "lucide-react";
 
 const events = [
   {
-    title: "UI Best Practices",
-    category: "Web Design",
-    date: "16 Feb 2036",
-    duration: "22 Hours",
-    price: "$120",
-    image: "/assets/images/event-01.jpg",
+    title: "Tryout UTBK Nasional 2026",
+    category: "TPS & Literasi",
+    date: "10 Januari 2026",
+    duration: "120 Menit",
+    price: "Gratis",
+    image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1200", // siswa belajar serius
   },
   {
-    title: "New Design Trend",
-    category: "Front End",
-    date: "24 Feb 2036",
-    duration: "30 Hours",
-    price: "$320",
-    image: "/assets/images/event-02.jpg",
+    title: "Tryout TKA Saintek & Soshum",
+    category: "Matematika & Pengetahuan",
+    date: "24 Januari 2026",
+    duration: "150 Menit",
+    price: "Rp25.000",
+    image: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?q=80&w=1200", // papan matematika
   },
   {
-    title: "Web Programming",
-    category: "Full Stack",
-    date: "12 Mar 2036",
-    duration: "48 Hours",
-    price: "$440",
-    image: "/assets/images/event-03.jpg",
+    title: "Kelas Umum: Strategi Lolos PTN",
+    category: "Webinar Motivasi",
+    date: "5 Februari 2026",
+    duration: "90 Menit",
+    price: "Gratis",
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200", // kelas seminar
   },
 ];
+
+
 
 export default function Events() {
   return (

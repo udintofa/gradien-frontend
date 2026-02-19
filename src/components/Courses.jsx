@@ -18,58 +18,60 @@ const cardVariants = {
 export default function Courses() {
   const [filter, setFilter] = useState("all");
 
-  const categories = ["all", "design", "development", "wordpress"];
+  const categories = ["all", "Literasi", "Matematika", "Strategi"];
 
   const courses = [
     {
       id: 1,
-      title: "Learn Web Design",
-      author: "Stella Blair",
-      category: "design",
-      price: 160,
-      image: "https://picsum.photos/400/250?1",
+      title: "Penalaran Umum TPS",
+      author: "Mentor GradienNol",
+      category: "TPS",
+      price: 0,
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644", // diskusi belajar
     },
     {
       id: 2,
-      title: "Web Development Tips",
-      author: "Cindy Walker",
-      category: "development",
-      price: 340,
-      image: "https://picsum.photos/400/250?2",
+      title: "Literasi Bahasa Indonesia UTBK",
+      author: "Mentor GradienNol",
+      category: "Literasi",
+      price: 0,
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b", // membaca buku
     },
     {
       id: 3,
-      title: "Latest Web Trends",
-      author: "David Hutson",
-      category: "wordpress",
-      price: 640,
-      image: "https://picsum.photos/400/250?3",
+      title: "Penalaran Matematika UTBK",
+      author: "Mentor GradienNol",
+      category: "Matematika",
+      price: 0,
+      image: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d", // matematika papan tulis
     },
     {
       id: 4,
-      title: "Online Learning Steps",
-      author: "Stella Blair",
-      category: "development",
-      price: 450,
-      image: "https://picsum.photos/400/250?4",
+      title: "Literasi Bahasa Inggris UTBK",
+      author: "Mentor GradienNol",
+      category: "Literasi",
+      price: 0,
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f", // belajar bareng
     },
     {
       id: 5,
-      title: "Be a WordPress Master",
-      author: "Sophia Rose",
-      category: "wordpress",
-      price: 320,
-      image: "https://picsum.photos/400/250?5",
+      title: "Strategi Lolos PTN Impian",
+      author: "Mentor GradienNol",
+      category: "Strategi",
+      price: 0,
+      image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94", // kampus impian
     },
     {
       id: 6,
-      title: "Full Stack Developer",
-      author: "David Hutson",
-      category: "design",
-      price: 240,
-      image: "https://picsum.photos/400/250?6",
+      title: "Tryout UTBK Prediksi 2026",
+      author: "Tim Akademik",
+      category: "Tryout",
+      price: 0,
+      image: "https://images.unsplash.com/photo-1544717305-2782549b5136", // belajar serius
     },
   ];
+
+
 
   const filteredCourses =
     filter === "all"
