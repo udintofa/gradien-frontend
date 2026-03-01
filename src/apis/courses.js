@@ -11,3 +11,15 @@ export const getCourseById = async (courseId) => {
   const data = await res.json();
   return data;
 }
+
+export const createCourse = async () => {
+  return;
+}
+
+export const updateCourseById = async (courseId) => {
+  return;
+}
+
+export const deleteCourseById = async (courseId) => {
+  return;
+}

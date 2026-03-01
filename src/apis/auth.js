@@ -20,10 +20,11 @@ export const login = async (username, password) => {
   }
 
   // ambil token
-  const { token } = data;
+  const { token, role } = data;
 
   // simpan token
   localStorage.setItem("token", token);
+  localStorage.setItem("role", role);
 };
 
 // REGISTER
